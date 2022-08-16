@@ -30,15 +30,15 @@ provincias_id['Guipúzcoa'] = provincias_id.pop('Gipuzcoa')
 if plot == "Population":
     # Dataset load
     df = pd.read_pickle("data/pop_df.pkl")
-    fig = px.density_mapbox(df, lat="lat", lon="lng", z="population"
+    fig = px.density_mapbox(df, lat="lat", lon="lng", z="population_log"
                         ,hover_name='city'
-                        ,center=dict(lat=39, lon=-3.7)
-                        # ,range_color = [0, 200]
-                        ,zoom=4
-                        ,radius=50
+                        ,center=dict(lat=39.3, lon=-4.2)
+                        ,hover_data= ['population']
+                        ,zoom=5
+                        ,radius=df["population_log"]*4
                         ,opacity=0.5
                         ,mapbox_style='open-street-map'
-                        ,height=800
+                        ,height=875
                         ,title="<b>Spanish population by city</b>"
                         )
     fig.update_layout(title={'font': {'size': 50}})
